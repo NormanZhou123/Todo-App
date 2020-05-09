@@ -22,13 +22,15 @@ class App extends React.Component {
     };
   }
 
+  // Task name
   changeName(event) {
     this.setState({ name: event.target.value });
   }
+  // Task priority
   changePriotity(event) {
     this.setState({ priotity: event.target.value });
   }
-
+  // Add to list
   addItem() {
     let { todoList, name, priotity } = this.state;
     if(!name) {
@@ -45,10 +47,11 @@ class App extends React.Component {
       name: ''
     })
   }
+  // Generate id for each task
   genID(length) {
     return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
   }
-
+  // Delete item
   deleteItem(todo) {
     const { todoList } = this.state;
     let newList = todoList.filter(item => (
@@ -59,15 +62,15 @@ class App extends React.Component {
       todoList: newList
     })
   }
-
+  // Filter checkbox
   changeNeedfilter(event) {
     this.setState({ needFilter: event.target.checked });
   }
-
+  // Change filter priority
   changeFilterPriotity(event) {
     this.setState({ filterPriotity: event.target.value });
   }
-
+  // render task list
   renderList() {
     let list = [];
     const {todoList, needFilter,filterPriotity} = this.state;
@@ -85,6 +88,7 @@ class App extends React.Component {
       <List list={list} deleteCallback={this.deleteItem.bind(this)} />
     )
   }
+
   render() {
     return (
       <div className="App">
@@ -109,8 +113,8 @@ class App extends React.Component {
                   </select>
                   <img src={arrowdown} alt="" className="arrow-down" />
                 </div>
-
               </div>
+
               <div className="btn" onClick={this.addItem}>
                 <div className="text">Add new TODO</div>
                 <img src={arrow} alt="" className="arrow" />
